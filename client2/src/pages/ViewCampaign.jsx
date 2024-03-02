@@ -26,7 +26,17 @@ export default function ViewCampaign() {
       <section id="gallery">
           <div className="container">
               <div className="row">
-                  
+              {campaigns.map((campaign, index) => (
+                  <div key={index}>
+                      <h2>{campaign.title}</h2>
+                      <p>Owner: {campaign.owner}</p>
+                      <p>Description: {campaign.description}</p>
+                      <p>Target: {campaign.target}</p>
+                      <p>Deadline: {new Date(campaign.deadline * 1000).toLocaleDateString()}</p>
+                      <p>Amount Collected: {campaign.amountCollected}</p>
+                      {/* Render other campaign details as needed */}
+                  </div>
+              ))}
               </div>
           </div>
       </section>
