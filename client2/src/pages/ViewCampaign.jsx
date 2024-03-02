@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Card from '../components/Card'
 import axios from "axios";
-import Navbar from '../components/Navbar';
 
 export default function ViewCampaign() {
 
@@ -20,9 +19,6 @@ export default function ViewCampaign() {
 
   return (
     <div>
-
-      <Navbar />
-
       <section id="gallery">
           <div className="container">
               <div className="row">
