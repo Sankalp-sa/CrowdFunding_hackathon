@@ -1,9 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { CloseSVG } from "../../assets/images";
 import { Button, Input, Img, Heading, Text } from "./..";
+import { ethers } from 'ethers';
 
 export default function Header({ ...props }) {
   const [searchBarValue, setSearchBarValue] = React.useState("");
+
+  const [errorMessage, seterrorMessage] = useState(null);
+  const [defaultAccount, setdefaultAccout] = useState(null);
+  const [userBalance, setuserBalance] = useState(null);
+
+  const getBalance = (accountAddresss) => {
+    window.ethereum.request({ method: 'eth_getBalance', params: [String(accountAddresss), "latest"] })
+      .then(balance => {
+        // console.log(ethers.formatEther(balance));
+        setuserBalance(ethers.formatEther(balance));
+      })
+  }
+
+  const accountChanged = (accountName) => {
+    setdefaultAccout(accountName);
+    getBalance(accountName);
+  }
+
+  const connect_wallet = () => {
+    try {
+      if (window.ethereum) {
+        window.ethereum.request({ method: "eth_requestAccounts" })
+          .then(result => {
+            // console.log(result);
+            accountChanged(result[0]);
+          })
+
+
+      }
+      else {
+        seterrorMessage("Install MetaMask please!!!");
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  console.log("DefaultAccount: " + defaultAccount);
+  console.log("balance: " + userBalance);
 
   return (
     <header {...props}>
@@ -50,9 +91,10 @@ export default function Header({ ...props }) {
             }
             className="w-[55%] gap-2 text-gray-900 font-bold"
           />
-          <Button size="lg" className="font-semibold min-w-[94px]">
-            Log in
+          <Button size="lg" className="font-semibold min-w-[94px]" onClick={connect_wallet}>
+            Connect
           </Button>
+
         </div>
       </div>
     </header>
