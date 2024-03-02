@@ -91,9 +91,17 @@ export default function Header({ ...props }) {
             }
             className="w-[55%] gap-2 text-gray-900 font-bold"
           />
-          <Button size="lg" className="font-semibold min-w-[94px]" onClick={connect_wallet}>
-            Connect
-          </Button>
+          {
+            defaultAccount == null ? (
+              <Button size="lg" className="font-semibold min-w-[94px]" onClick={connect_wallet}>
+                Connect
+              </Button>
+            ) :
+              (
+                Hello
+              )
+          }
+
 
         </div>
       </div>
