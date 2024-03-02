@@ -28,8 +28,6 @@ export default function Navbar() {
                         // console.log(result);
                         accountChanged(result[0]);
                     })
-
-
             }
             else {
                 seterrorMessage("Install MetaMask please!!!");
