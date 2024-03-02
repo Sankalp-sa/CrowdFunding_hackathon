@@ -14,9 +14,9 @@ const express = require('express');
 const app = express();
 
 const cors = require('cors');
-app.use(cors())
+app.use(cors());
 
-app.use(express.json());
+app.use(express.json());    
 
 // app.get('/camp/:id', async(req, res) => {   //http://localhost:3000/products/1
 //     try {
@@ -53,7 +53,7 @@ app.post('/donate', async(req, res) => {
 
 });
 
-app.get('/campaign/', async(req, res) => {   //http://localhost:3000/products/
+app.get('/campaign/', async(req, res) => {
     try {
         const campaigns = await contractInstance.getCampaigns();
         const camp = campaigns.map(c => ({
@@ -67,7 +67,6 @@ app.get('/campaign/', async(req, res) => {   //http://localhost:3000/products/
             donators: c.donators,
             donations: c.donations
         }))
-        console.log(camp)
         res.send(camp);
     }
     catch (error) {
