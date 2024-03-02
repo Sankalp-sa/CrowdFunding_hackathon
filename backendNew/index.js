@@ -81,9 +81,9 @@ app.post('/createCampaign', async(req, res) => {
 
         console.log(req.body)
 
-        // const tx = await contractInstance.createCampaign(owner, title, description, target, deadline, image);
-        // await tx.wait();
-        // res.json({success: true})
+        const tx = await contractInstance.createCampaign(owner, title, description, target, deadline, image);
+        await tx.wait();
+        res.json({success: true})
     }
     catch (error) {
         res.status(500).send(error.message);

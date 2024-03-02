@@ -1,11 +1,14 @@
 import { React, useState } from 'react';
 import { ethers } from "ethers";
+import { useUser } from '../context/user';
 
 export default function Navbar() {
 
     const [errorMessage, seterrorMessage] = useState(null);
     const [defaultAccount, setdefaultAccout] = useState(null);
     const [userBalance, setuserBalance] = useState(null);
+    
+    const { user, setUser } = useUser();
 
     const getBalance = (accountAddresss) => {
         window.ethereum.request({ method: 'eth_getBalance', params: [String(accountAddresss), "latest"] })
@@ -18,6 +21,12 @@ export default function Navbar() {
     const accountChanged = (accountName) => {
         setdefaultAccout(accountName);
         getBalance(accountName);
+
+        setUser(accountName);
+        localStorage.setItem(
+            "user",
+            JSON.stringify(accountName)
+          );
     }
 
     const connect_wallet = () => {
@@ -69,7 +78,12 @@ export default function Navbar() {
                                 <a className="nav-link disabled" aria-disabled="true">Disabled</a>
                             </li>
                         </ul>
-                        <button className="btn btn-dark" type="submit" onClick={connect_wallet} >Connect</button>
+                        <button className="btn btn-dark" type="submit" onClick={connect_wallet} > {user?.length > 0 ? 
+                        <> 
+                        <img src="https://freelogopng.com/images/all_img/1683021055metamask-icon.png" alt="user" width="30" height="30" className="rounded-circle me-3" />
+                        {user.slice(1,5)+"..."+user.slice(user.length-5,user.length) }
+                        </> 
+                        : "Connect"} </button>
                     </div>
                 </div>
             </nav>
