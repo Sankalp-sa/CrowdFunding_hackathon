@@ -22,7 +22,18 @@ export default function ViewCampaign() {
       <section id="gallery">
           <div className="container">
               <div className="row">
-                  
+              {campaigns.map((campaign, index) => (
+                <div className="col-md-4">
+                <Card
+                    owner={campaign.owner}
+                    title={campaign.title}
+                    image={campaign.image}
+                    target={campaign.target}
+                    deadline={campaign.deadline}
+                    description={campaign.description}
+                  />
+                  </div>
+              ))}
               </div>
           </div>
       </section>
