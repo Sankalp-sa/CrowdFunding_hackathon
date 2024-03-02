@@ -12,7 +12,10 @@ const contractInstance = new ethers.Contract(contractAddress, abi, signer);
 const express = require('express');
 const app = express();
 
-app.use(express.json());
+const cors = require('cors');
+app.use(cors());
+
+app.use(express.json());    
 
 // app.get('/camp/:id', async(req, res) => {   //http://localhost:3000/products/1
 //     try {
@@ -43,7 +46,7 @@ app.post('/donate', async(req, res) => {
 
 });
 
-app.get('/campaign/', async(req, res) => {   //http://localhost:3000/products/
+app.get('/campaign/', async(req, res) => {
     try {
         const campaigns = await contractInstance.getCampaigns();
         const camp = campaigns.map(c => ({
@@ -57,7 +60,6 @@ app.get('/campaign/', async(req, res) => {   //http://localhost:3000/products/
             donators: c.donators,
             donations: c.donations
         }))
-        console.log(camp)
         res.send(camp);
     }
     catch (error) {
@@ -106,7 +108,7 @@ app.post('/createCampaign', async(req, res) => {
 //     }
 // });
 
-const port = 3000;
+const port = 5000;
 app.listen(port, () => {
-    console.log("API server is listening on port 3000")
+    console.log("API server is listening on port 5000")
 })
