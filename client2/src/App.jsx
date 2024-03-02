@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CreateCampaign from './pages/CreateCampaign';
 import ViewCampaign from './pages/ViewCampaign';
+import MoreDetailsCampaign from './pages/MoreDetailsCampaign';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/createCampaign" element={<CreateCampaign />} />
         <Route path="/viewCampaign" element={<ViewCampaign />} />
+        <Route path="/moredetailscampaign" element={<MoreDetailsCampaign />} />
       </Routes>
   );
 }
