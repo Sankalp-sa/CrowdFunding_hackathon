@@ -43,13 +43,13 @@ contract CrowdFunding {
 
     }   
 
-    function donateToCampaign(uint256 _id, uint256 _amount, address _donatorPublicKey) public payable{
+    function donateToCampaign(uint256 _id) public payable{
 
-        uint256 amount = _amount;
+        uint256 amount = msg.value;
 
         Campaign storage campaign = campaigns[_id];
 
-        campaign.donators.push(_donatorPublicKey);
+        campaign.donators.push(msg.sender);
         campaign.donations.push(amount);
 
         // implement target reached or not

@@ -1,5 +1,6 @@
 const ethers = require('ethers');
 require('dotenv').config();
+
 const API_URL = process.env.API_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const contractAddress = process.env.CONTRACT_ADDRESS;
@@ -35,8 +36,14 @@ app.use(express.json());
 app.post('/donate', async(req, res) => {
 
     try {
-        const {id, amount, donator} = req.body;
-        const tx = await contractInstance.donateToCampaign(id, amount, donator);
+        const {id, amount} = req.body;
+
+        const amountWei = ethers.utils.parseEther(amount.toString());
+
+        const tx = await contractInstance.donateToCampaign(id ,{
+            value: amountWei 
+        });
+
         await tx.wait();
         res.json({success: true})
     }
@@ -74,9 +81,9 @@ app.post('/createCampaign', async(req, res) => {
 
         console.log(req.body)
 
-        const tx = await contractInstance.createCampaign(owner, title, description, target, deadline, image);
-        await tx.wait();
-        res.json({success: true})
+        // const tx = await contractInstance.createCampaign(owner, title, description, target, deadline, image);
+        // await tx.wait();
+        // res.json({success: true})
     }
     catch (error) {
         res.status(500).send(error.message);

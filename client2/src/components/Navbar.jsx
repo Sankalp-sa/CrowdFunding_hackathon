@@ -32,10 +32,7 @@ export default function Navbar() {
                     <a className="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button className="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <button className="btn btn-dark" type="submit">Connect</button>
                 </div>
             </div>
             </nav>
