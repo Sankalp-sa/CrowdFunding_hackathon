@@ -29,22 +29,41 @@ app.use(express.json());
 //     }
 // });
 
-// app.get('/products/', async(req, res) => {   //http://localhost:3000/products/
-//     try {
-//         const allProducts = await contractInstance.getAllProducts();
-//         const products = allProducts.map(product => ({
-//             id : parseInt(product.id),
-//             name: product.name,
-//             price: parseInt(product.price),
-//             quantity: parseInt(product.quantity)
-//         }))
-//         console.log(products)
-//         res.send(products);
-//     }
-//     catch (error) {
-//         res.status(500).send(error.message);
-//     }
-// });
+app.post('/donate', async(req, res) => {
+
+    try {
+        const {id, amount, donator} = req.body;
+        const tx = await contractInstance.donateToCampaign(id, amount, donator);
+        await tx.wait();
+        res.json({success: true})
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
+
+});
+
+app.get('/campaign/', async(req, res) => {   //http://localhost:3000/products/
+    try {
+        const campaigns = await contractInstance.getCampaigns();
+        const camp = campaigns.map(c => ({
+            owner : c.owner,
+            title: c.title,
+            description: c.description,
+            target: parseInt(c.target),
+            deadline: parseInt(c.deadline),
+            image: c.image,
+            amountCollected: parseInt(c.amountCollected),
+            donators: c.donators,
+            donations: c.donations
+        }))
+        console.log(camp)
+        res.send(camp);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
+});
 
 
 app.post('/createCampaign', async(req, res) => {
