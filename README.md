@@ -1,4 +1,4 @@
-![image](https://github.com/Sankalp-sa/CrowdFunding_hackathon/assets/101592578/5c4c6f81-f81e-459a-8ab6-28e6a0630898)# CrowdFunding Blockchain Based Project
+# CrowdFunding Blockchain Based Project
 
 ## Technical Skill: 
 
