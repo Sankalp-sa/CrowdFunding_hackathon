@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { ethers } from "ethers";
 import { useUser } from '../context/user';
 import { NavLink } from 'react-router-dom';
@@ -9,13 +9,50 @@ export default function Navbar() {
     const [defaultAccount, setdefaultAccout] = useState(null);
     const [userBalance, setuserBalance] = useState(null);
 
+    const [connected, setConnected] = useState(false);
+    const [installed, setInstalled] = useState(false);
+
+    const isMetaMaskInstalled = () => {
+        return Boolean(window.ethereum && window.ethereum.isMetaMask);
+    };
+
+    const isMetaMaskConnected = async () => {
+        const { ethereum } = window;
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+        return accounts && accounts.length > 0;
+    };
+
+    const initialise = async () => {
+        const isConnected = await isMetaMaskConnected();
+        const isInstalled = isMetaMaskInstalled();
+        setConnected(isConnected);
+        localStorage.setItem('connected', isConnected);
+        setInstalled(isInstalled);
+    };
+
+    useEffect(() => {
+        initialise();
+
+        // Subscribe to 'accountsChanged' event
+        const handleAccountsChanged = async () => {
+            await initialise();
+        };
+
+        window.ethereum.on('accountsChanged', handleAccountsChanged);
+
+        // Cleanup function to unsubscribe when the component unmounts
+        return () => {
+            window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        };
+    }, []); // Empty dependency array to run the effect only once on mount
+
     const { user, setUser } = useUser();
 
     const getBalance = (accountAddresss) => {
         window.ethereum.request({ method: 'eth_getBalance', params: [String(accountAddresss), "latest"] })
             .then(balance => {
                 // console.log(ethers.formatEther(balance));
-                setuserBalance(ethers.formatEther(balance));
+                setuserBalance(ethers.utils.formatEther(balance));
             })
     }
 
@@ -71,14 +108,12 @@ export default function Navbar() {
                             </li>
 
                         </ul>
-                        <button className="btn btn-dark" type="submit" onClick={connect_wallet} > {user?.length > 0 ?
+                        <button className="btn btn-dark" type="submit" onClick={connect_wallet} > {connected ?
                             <>
-                                <img src="https://freelogopng.com/images/all_img/1683021055metamask-icon.png"
-                                    alt="user" width="30" height="30" className="rounded-circle me-3" />
+                                <img src="https://freelogopng.com/images/all_img/1683021055metamask-icon.png" alt="user" width="30" height="30" className="rounded-circle me-3" />
                                 {user.slice(1, 5) + "..." + user.slice(user.length - 5, user.length)}
                             </>
-                            : "Connect"}
-                        </button>
+                            : "Connect"} </button>
                     </div>
                 </div>
             </nav>

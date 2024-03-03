@@ -16,27 +16,27 @@ export default function ViewCampaign() {
         fetchData();
     }, []);
 
-    return (
-        <div>
-            <Navbar />
-            <section id="gallery">
-                <div className="container">
-                    <div className="row">
-                        {campaigns.map((campaign, index) => (
-                            <div className="col-md-4">
-                                <Card
-                                    owner={campaign.owner}
-                                    title={campaign.title}
-                                    image={campaign.image}
-                                    target={campaign.target}
-                                    deadline={campaign.deadline}
-                                    description={campaign.description}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        </div>
-    )
+  return (
+    <div>
+      <Navbar />
+      <section id="gallery" style={{padding: "5% 12%"}}>
+          <div className="container">
+              <div className="row">
+              {campaigns.map((campaign, index) => (
+                <div className="col-md-4">
+                <Card
+                    owner={campaign.owner}
+                    title={campaign.title}
+                    image={campaign.image}
+                    target={campaign.target}
+                    deadline={campaign.deadline}
+                    description={campaign.description}
+                  />
+                  </div>
+              ))}
+              </div>
+          </div>
+      </section>
+  </div>
+  )
 }
