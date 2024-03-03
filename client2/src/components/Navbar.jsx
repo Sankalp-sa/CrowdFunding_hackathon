@@ -51,7 +51,7 @@ export default function Navbar() {
     const getBalance = (accountAddresss) => {
         window.ethereum.request({ method: 'eth_getBalance', params: [String(accountAddresss), "latest"] })
             .then(balance => {
-                // console.log(ethers.formatEther(balance));
+                console.log(ethers.utils.formatEther(balance));
                 setuserBalance(ethers.utils.formatEther(balance));
             })
     }
@@ -89,9 +89,7 @@ export default function Navbar() {
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
-                    <img style={{ width: 50 }} src='/logo.jpeg' alt='logo' />
-
-
+                <i className="fa-solid fa-people-roof" style={{color: '#f96d00'}} />
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
                     </button>
@@ -117,7 +115,9 @@ export default function Navbar() {
                         <button className="btn btn-dark" type="submit" onClick={connect_wallet} > {connected ?
                             <>
                                 <img src="https://freelogopng.com/images/all_img/1683021055metamask-icon.png" alt="user" width="30" height="30" className="rounded-circle me-3" />
-                                {user.slice(1, 5) + "..." + user.slice(user.length - 5, user.length)}
+                                <div className="row-md-2">
+                                    {user.slice(1, 5) + "..." + user.slice(user.length - 5, user.length) + " " + userBalance + " ETH"}
+                                </div>
                             </>
                             : "Connect"} </button>
                     </div>
