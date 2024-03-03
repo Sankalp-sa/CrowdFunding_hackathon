@@ -89,7 +89,7 @@ export default function Navbar() {
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
-                <i className="fa-solid fa-people-roof" style={{color: '#f96d00'}} />
+                    <img src="./logo.jpeg" alt="logo" width="50" height="50" className="rounded-circle me-3" />
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
                     </button>

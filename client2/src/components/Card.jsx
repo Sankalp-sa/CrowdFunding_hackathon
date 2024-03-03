@@ -42,13 +42,13 @@ export default function Card({ id, owner, title, image, target, deadline, descri
             <div className="card-body">
                 <h3 className="card-title d-flex justify-content-center my-2">{title}</h3>
                 <p className="card-text">{description}</p>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <div class="d-flex flex-column align-items-center">
-                                <p class="card-text"><b>Owner: </b> {owner}</p>
-                                <p class="card-text"><b>Target: </b> {target}</p>
-                                <p class="card-text"><b>Deadline: </b> {deadline}</p>
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-md-6">
+                            <div className="d-flex flex-column align-items-center">
+                                <p className="card-text"><b>Owner: </b> {owner}</p>
+                                <p className="card-text"><b>Target: </b> {target}</p>
+                                <p className="card-text"><b>Deadline: </b> {deadline}</p>
                                 <div className="my-3">
                                     <input
                                         name="ether"
@@ -59,7 +59,9 @@ export default function Card({ id, owner, title, image, target, deadline, descri
                                     />
                                 </div>
                                 <Link to="" className="btn btn-dark" onClick={handleSubmit} >Donate</Link>
-                                <Link to={`/moredetailscampaign/${id}`} className="btn btn-dark" >View More</Link>
+                                <Link to={`/moredetailscampaign/${id}`} className="btn btn-dark" 
+                                
+                                >View More</Link>
                             </div> 
                             
                         </div>

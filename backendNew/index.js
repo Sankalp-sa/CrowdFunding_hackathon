@@ -53,6 +53,29 @@ app.post('/donate', async(req, res) => {
 
 });
 
+app.get('/campaigns/:id', async(req, res) => {
+    try {
+        const id = req.params.id;
+        const campaign = await contractInstance.getCampaign(id);
+        const camp = {
+            owner : campaign.owner,
+            title: campaign.title,
+            description: campaign.description,
+            target: parseInt(campaign.target),
+            deadline: parseInt(campaign.deadline),
+            image: campaign.image,
+            amountCollected: parseInt(campaign.amountCollected),
+            donators: campaign.donators,
+            donations: campaign.donations
+        }
+        // console.log(camp);
+        res.send(camp);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 app.get('/campaign/', async(req, res) => {
     try {
         const campaigns = await contractInstance.getCampaigns();

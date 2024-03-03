@@ -78,4 +78,8 @@ contract CrowdFunding {
         return allCompaigns;
 
     }
+
+    function getCampaign(uint256 _id) public view returns (Campaign memory) {
+        return campaigns[_id];
+    }
 }
