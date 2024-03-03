@@ -9,7 +9,7 @@ export default function ViewCampaign() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:5000/campaign/");
+      const response = await axios.get("http://localhost:5000/campaigns/");
       setCampaigns(response.data);
       console.log(response.data);
     }
@@ -27,6 +27,7 @@ export default function ViewCampaign() {
               {campaigns.map((campaign, index) => (
                 <div className="col-md-4">
                 <Card
+                    id={index + 1}
                     owner={campaign.owner}
                     title={campaign.title}
                     image={campaign.image}

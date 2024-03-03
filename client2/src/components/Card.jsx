@@ -59,6 +59,7 @@ export default function Card({ owner, title, image, target, deadline, descriptio
                                     />
                                 </div>
                                 <Link to="" className="btn btn-dark" onClick={handleSubmit} >Donate</Link>
+                                <Link to="/moredetailscampaign" className="btn btn-dark" onClick={handleClick} >View More</Link>
                             </div> 
                             
                         </div>
