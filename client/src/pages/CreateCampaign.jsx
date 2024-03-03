@@ -18,7 +18,7 @@ export default function CreateCampaign() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/createCampaign', {
+      const response = await fetch('https://crowdfunding-hackathon-backendnew.onrender.com/createCampaign', {
         method: 'POST',
         headers: {  
           'Content-Type': 'application/json',

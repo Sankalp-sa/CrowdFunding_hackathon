@@ -1,8 +1,6 @@
-// import { error } from 'console';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ethers } from 'ethers';
-// import { use } from 'chai';
 
 export default function Card({ id, owner, title, image, target, deadline, description }) {
 
@@ -38,7 +36,7 @@ export default function Card({ id, owner, title, image, target, deadline, descri
 
     return (
         <div className="card">
-            <img src={image} alt className="card-img-top" />
+            <img src={image} alt="card-image" className="card-img-top" />
             <div className="card-body">
                 <h3 className="card-title d-flex justify-content-center my-2">{title}</h3>
                 <p className="card-text">{description}</p>

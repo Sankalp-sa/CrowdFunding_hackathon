@@ -12,9 +12,10 @@ const MoreDetailsCampaign = () => {
 
   useEffect(() => {
     async function fetchData() {
+        
       try {
         const response = await axios.get(
-          `http://localhost:5000/campaigns/${id}`
+          `https://crowdfunding-hackathon-backendnew.onrender.com/campaigns/${id}`
         );
         setCampaign(response.data);
         setLoading(false);
