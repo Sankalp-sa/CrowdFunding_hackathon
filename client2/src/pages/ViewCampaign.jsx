@@ -5,18 +5,16 @@ import Navbar from '../components/Navbar';
 
 export default function ViewCampaign() {
 
-  const [campaigns, setCampaigns] = useState([]);
+    const [campaigns, setCampaigns] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get("http://localhost:5000/campaigns/");
-      setCampaigns(response.data);
-      console.log(response.data);
-    }
-
-    fetchData();
-  }
-  , []);
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get("http://localhost:5000/campaign/");
+            setCampaigns(response.data);
+            console.log(response.data);
+        }
+        fetchData();
+    }, []);
 
   return (
     <div>
