@@ -100,12 +100,18 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/createCampaign">Create Campaign</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/viewCampaign">View Campaign</NavLink>
-                            </li>
+                            {connected ? (
+                                <>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="/createCampaign">Create Campaign</NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="/viewCampaign">View Campaign</NavLink>
+                                    </li>
+                                </>
+                            ) : (
+                                <></>
+                            )}
 
                         </ul>
                         <button className="btn btn-dark" type="submit" onClick={connect_wallet} > {connected ?
