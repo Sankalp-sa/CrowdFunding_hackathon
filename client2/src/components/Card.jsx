@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { ethers } from 'ethers';
 // import { use } from 'chai';
 
-export default function Card({ owner, title, image, target, deadline, description }) {
+export default function Card({ id, owner, title, image, target, deadline, description }) {
 
     const startPayment = async ({ setTxs, ether, addr }) => {
         if (!window.ethereum)
@@ -59,7 +59,7 @@ export default function Card({ owner, title, image, target, deadline, descriptio
                                     />
                                 </div>
                                 <Link to="" className="btn btn-dark" onClick={handleSubmit} >Donate</Link>
-                                <Link to="/moredetailscampaign" className="btn btn-dark" onClick={handleClick} >View More</Link>
+                                <Link to={`/moredetailscampaign/${id}`} className="btn btn-dark" >View More</Link>
                             </div> 
                             
                         </div>

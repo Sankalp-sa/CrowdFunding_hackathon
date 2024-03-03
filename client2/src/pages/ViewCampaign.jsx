@@ -25,7 +25,7 @@ export default function ViewCampaign() {
               {campaigns.map((campaign, index) => (
                 <div className="col-md-4">
                 <Card
-                    id={index + 1}
+                    id={index}
                     owner={campaign.owner}
                     title={campaign.title}
                     image={campaign.image}
