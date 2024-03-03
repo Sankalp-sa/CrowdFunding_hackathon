@@ -13,27 +13,25 @@ export default function ViewCampaign() {
             setCampaigns(response.data);
             console.log(response.data);
         }
-
         fetchData();
-    }
-        , []);
+    }, []);
 
     return (
         <div>
-
             <Navbar />
-
             <section id="gallery">
                 <div className="container">
                     <div className="row">
                         {campaigns.map((campaign, index) => (
-                            <div key={index}>
-                                <h2>{campaign.title}</h2>
-                                <p>Owner: {campaign.owner}</p>
-                                <p>Description: {campaign.description}</p>
-                                <p>Target: {campaign.target}</p>
-                                <p>Deadline: {new Date(campaign.deadline * 1000).toLocaleDateString()}</p>
-                                <p>Amount Collected: {campaign.amountCollected}</p>
+                            <div className="col-md-4">
+                                <Card
+                                    owner={campaign.owner}
+                                    title={campaign.title}
+                                    image={campaign.image}
+                                    target={campaign.target}
+                                    deadline={campaign.deadline}
+                                    description={campaign.description}
+                                />
                             </div>
                         ))}
                     </div>
